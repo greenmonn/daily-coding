@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="2170;" />
+<title>Attending Bot</title>
+
+<script language="JavaScript">
+    var postId = Math.floor(1 + Math.random() * 9998);
+    var cafeName = "nyctourdesign";
+    var url = `https://cafe.naver.com/${cafeName}/${postId}`;
+
+    document.getElementById("cafeName").textContent = cafeName;
+    function attend() {
+        window.open(url, '_blank');
+    }
+
+</script>
+
+</head>
+<body onLoad="attend()">
+    <p>
+        Attending <mark id="cafeName"></mark>...
+    </p>
+    <p>
+        Refreshing every 30 minutes
+    </p>
+</body>
+</html>
