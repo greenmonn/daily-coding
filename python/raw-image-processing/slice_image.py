@@ -6,7 +6,7 @@ arr = open("output", "rb").read()
 np_arr = np.frombuffer(arr, dtype=np.uint8)
 np_arr = np.reshape(np_arr, (160, 160))
 
-grid = 10
+grid = 16
 size = int(160/grid)
 
 for i in range(grid):

@@ -2,11 +2,11 @@ from PIL import Image
 
 import numpy as np
 
-arr = open("cells/cell93", "rb").read() 
+arr = open("output", "rb").read() 
 
 np_arr = np.frombuffer(arr, dtype=np.uint8)
 
-np_arr = np.reshape(np_arr, (16, 16))
+np_arr = np.reshape(np_arr, (160, 160))
 
 print(np_arr)
 
