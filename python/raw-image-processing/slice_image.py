@@ -9,9 +9,14 @@ np_arr = np.reshape(np_arr, (160, 160))
 grid = 16
 size = int(160/grid)
 
+def bytesToHexString(bytes):
+        return ''.join(format(x, '02x') for x in bytes)
+
 for i in range(grid):
     for j in range(grid):
         cell = np_arr[size*j:size*(j+1), size*i:size*(i+1)]
         cell = np.reshape(cell, (size*size))
+
+        hex = bytesToHexString(cell)
         
-        open("./cells/cell" + str(grid*i+j), "wb").write(cell)
+        open("./cells/cell" + str(grid*i+j), "w").write(hex)
