@@ -1,6 +1,5 @@
 import pytest
 import sys
-import random
 
 def read_two_integers(input):
   numbers = list(map(int, input.split(' ')))
@@ -8,22 +7,20 @@ def read_two_integers(input):
 
 class Guesser:
   def __init__(self, a, b):
-    self.candidates = list(range(a+1, b+1))  # a <= p < b
-    self.guessCount = 0
+    self.range = (a+1, b+1)  # a <= p < b
     self.currentGuess = 0
 
   def guess(self):
-    guess = random.choice(self.candidates)
+    guess = sum(self.range) // 2
     self.currentGuess = guess
-    self.candidates = [x for x in self.candidates if x != guess]
     return guess
 
   def getFeedback(self, message):
     if (message == 'TOO_SMALL'):
-      self.candidates = [x for x in self.candidates if x > self.currentGuess]
+      self.range = (self.currentGuess+1, self.range[1])
 
     elif (message == 'TOO_BIG'):
-      self.candidates = [x for x in self.candidates if x < self.currentGuess]
+      self.range = (self.range[0], self.currentGuess)
 
 if __name__ == "__main__":
   t = int(input())
