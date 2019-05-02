@@ -1,6 +1,6 @@
 # Delta Debugging Implementation
 
-The simple script `delta_debugging.py` generates reduced test suite consisted of only failure-inducing statements.
+The simple script `delta_debugging.py` generates reduced test suite named `MyTest.java` consisted of only failure-inducing statements.
 
 For now, it works for one test case and manually specifying `suffix`, `prefix`, and `lines` to actually reduce is needed to avoid compile error.
 
