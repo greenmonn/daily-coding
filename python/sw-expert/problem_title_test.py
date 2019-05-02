@@ -1,34 +1,14 @@
-import pytest
-
-def test_number_of_titles():
-  assert 2 == number_of_titles(['Air', 'Dad', 'Ear', 'Blue', 'Ace'])
-
-  assert 1 == number_of_titles(['Snow_White', 'A_Problem', 'Another_Problem'])
-
-def number_of_titles(titles):
-  alphabets = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-  occurences = dict((key, False) for key in alphabets)
-  
-  for title in titles:
-    occurences[title[0]] = True
-
-  count = 0
-  for alphabet in occurences:
-    occurence = occurences[alphabet]
-    if occurence == False:
-      break
-    count += 1
-
-  return count
+from problem_title import *
+import unittest
 
 
-if __name__ == "__main__":
-  T = int(input())
-  for i in range(T):
-    N = int(input())
+class TestTitle(unittest.TestCase):
+    def test_number_of_titles(self):
+        print(number_of_titles(['A']))
+        self.assertEqual(2, number_of_titles(['Air', 'Dad', 'Ear', 'Blue', 'Ace']))
 
-    titles = []
-    for i in range(N):
-      title = input()
-      titles.append(title)
+        self.assertEqual(1, number_of_titles(['Snow_White', 'A_Problem', 'Another_Problem']))
 
+
+if __name__ == '__main__':
+    unittest.main()
