@@ -1245,10 +1245,16 @@
       "links": {},
       "address": "0x09D5FDd6e5eC0Ee8869fbA0c2656412A700D780c",
       "transactionHash": "0x1e692fa05605d227e3d6b3d08a16b6b96040a4ca68322b761e99b8fe497dfe80"
+    },
+    "1558432870471": {
+      "events": {},
+      "links": {},
+      "address": "0xA256Cce7c3AFae0F2bFf4549440b34b002dDed1f",
+      "transactionHash": "0x4b8cad2261af129b27933aa0ada6d3e6a69de6c7f27d51a043a8438ec0dd9430"
     }
   },
   "schemaVersion": "3.0.5",
-  "updatedAt": "2019-03-26T14:16:39.893Z",
+  "updatedAt": "2019-05-21T10:18:23.881Z",
   "devdoc": {
     "methods": {}
   },

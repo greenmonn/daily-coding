@@ -35,7 +35,7 @@ App = {
       App.web3Provider = window.web3.currentProvider;
     }
     else {
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
     }
 
     web3 = new Web3(App.web3Provider);
