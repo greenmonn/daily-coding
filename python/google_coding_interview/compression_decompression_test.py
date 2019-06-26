@@ -1,5 +1,6 @@
 import pytest
 
+# TODO: enhance memory usage with loop / generator
 
 def test_decompress():
     assert 'a' * 10 == decompress('10[a]')
