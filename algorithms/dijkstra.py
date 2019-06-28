@@ -1,6 +1,11 @@
 # Dijkstra Algorithm: To solve single source shortest path problem
 # (하나의 정점으로부터 다른 모든 정점까지의 최단 경로)
 
+# Without Priority Queue: O(V^2)
+# With Priority Queue: O(E + VlogV)
+
+import heapq
+
 
 class Graph():
     def __init__(self, vertices):
@@ -12,11 +17,25 @@ class Graph():
     def add_edge(self, _from, to, weight):
         self.vertices[_from].append((to, weight))
 
-    def edges_to(self, vertex_name):
+    def edges_from(self, vertex_name):
         return self.vertices[vertex_name]
 
     def get_vertices(self):
         return self.vertices.keys()
+
+
+class PriorityQueue():
+    def __init__(self):
+        self.queue = []
+
+    def __len__(self):
+        return len(self.queue)
+
+    def push(self, vertex, length):
+        heapq.heappush(self.queue, (length, vertex))
+
+    def pop(self):
+        return heapq.heappop(self.queue)[1]
 
 
 def get_vertex_of_shortest_path(shortest_paths, to_visit):
@@ -41,15 +60,16 @@ def dijkstra(graph, start_vertex):
         else:
             shortest_paths[v] = 10000
 
-    to_visit = list(graph.get_vertices())[:]
+    to_visit = PriorityQueue()
+    to_visit.push(start_vertex, shortest_paths[v])
+
     while len(to_visit) > 0:
-        v = get_vertex_of_shortest_path(shortest_paths, to_visit)
-        to_visit.remove(v)
+        v = to_visit.pop()
 
-        for next_v, weight in g.edges_to(v):
-            shortest_paths[next_v] = min(
-                shortest_paths[next_v], weight + shortest_paths[v])
-
+        for next_v, weight in g.edges_from(v):
+            if weight + shortest_paths[v] < shortest_paths[next_v]:
+                shortest_paths[next_v] = weight + shortest_paths[v]
+                to_visit.push(next_v, shortest_paths[next_v])
 
     return shortest_paths
 
