@@ -1,6 +1,6 @@
 import pytest
 
-# TODO: Dijkstra, or O(N) solution
+# TODO: How to interprete this as Dijkstra?
 
 
 def test_volume_of_rainwater():
@@ -11,44 +11,22 @@ def test_volume_of_rainwater():
     assert volume_of_rainwater(
         [1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
 
-
-def is_all_heights_identical(heights):
-    height = heights[0]
-    for h in heights:
-        if h != height:
-            return False
-    return True
-
-
 def volume_of_rainwater(heights):
-    previous_bar = 0
-    previous_bar_index = -1
-    passed_heights = []
     total_volume = 0
-    body_volumes = []
-    for index, height in enumerate(heights):
-        if height >= previous_bar:
-            current_body_volume = (
-                index - previous_bar_index - 1) * previous_bar - sum(passed_heights)
-            total_volume += current_body_volume
-            body_volumes.append(current_body_volume)
-            previous_bar_index, previous_bar = index, height
-            passed_heights = []
+    leftmax = {}
+    rightmax = {}
+    for index in range(len(heights)):
+        r_index = len(heights) - 1 - index
+        if index == 0:
+            leftmax[index] = heights[index]
+            rightmax[r_index] = heights[r_index]
         else:
-            passed_heights.append(height)
-
-    if len(passed_heights) != 0:
-        while len(passed_heights) > 1:
-            if is_all_heights_identical(passed_heights):
-                break
-
-            max_height = max(passed_heights)
-            max_index = passed_heights.index(max_height)
-            current_body_volume = max_height * \
-                max_index - sum(passed_heights[:max_index])
-            passed_heights = passed_heights[max_index + 1:]
-
-            body_volumes.append(current_body_volume)
-            total_volume += current_body_volume
-
+            leftmax[index] = max(leftmax[index - 1], heights[index])
+            rightmax[r_index] = max(rightmax[r_index + 1], heights[r_index])
+    
+    for index in range(len(heights)):
+        water_height = min(leftmax[index], rightmax[index])
+        if water_height > 0:
+            total_volume += water_height - heights[index]
+    
     return total_volume
