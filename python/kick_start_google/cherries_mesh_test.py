@@ -1,41 +1,34 @@
 import pytest
 
 
-def minimum_sugar_content(all_node_num, w1_edge_num, pairs):
+def minimum_sugar_content(all_node_num, w1_edge_num, black_edges):
     edges_num = 0
     sugar_content = 0
 
     node_num = 1
 
-    if len(pairs) > 0:
-        node_num = pairs[0][0]
-
     unconnected = list(map(lambda x: x+1, range(all_node_num)))
     unconnected.remove(node_num)
 
     while len(unconnected) > 0:
-        index = -1
-        for i, (n1, n2) in enumerate(pairs):
+        has_black_edge = False
+
+        for n1, n2 in black_edges:
             if n1 not in unconnected and n2 in unconnected:
-                node_num = n2
-                index = i
+                unconnected.remove(n2)
+                has_black_edge = True
                 break
-            if n2 not in unconnected and n2 in unconnected:
-                node_num = n1
-                index = i
+            if n2 not in unconnected and n1 in unconnected:
+                unconnected.remove(n1)
+                has_black_edge = True
                 break
 
-        if index == -1:
-            node_num = unconnected[0]
-
+        if has_black_edge == False:
+            unconnected.pop()
             sugar_content += 2
         else:
             sugar_content += 1
             
-        unconnected.remove(node_num)
-
-        edges_num += 1
-
     return sugar_content
 
     
@@ -54,6 +47,9 @@ def test_minimum_sugar_content():
     assert minimum_sugar_content(5, 3, [(1, 2), (3, 4), (4, 5)]) == 5
 
     assert minimum_sugar_content(7, 6, [(1, 2), (2, 3), (3, 4), (2, 4), (5, 6), (6, 7)]) == 7
+
+    assert minimum_sugar_content(5, 0, []) == 8
+
 
 
 
