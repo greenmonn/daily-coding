@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: ORBS
+Version: 0.1
+Summary: ORBS implementation in Python
+Home-page: https://github.com/greenmonn/daily-coding
+Author: greenmon
+Author-email: greenmon@kaist.ac.kr
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7

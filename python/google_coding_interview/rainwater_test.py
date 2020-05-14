@@ -11,6 +11,7 @@ def test_volume_of_rainwater():
     assert volume_of_rainwater(
         [1, 2, 3, 4, 5, 6, 7, 8, 9]) == 0
 
+
 def volume_of_rainwater(heights):
     total_volume = 0
     leftmax = {}
@@ -23,10 +24,11 @@ def volume_of_rainwater(heights):
         else:
             leftmax[index] = max(leftmax[index - 1], heights[index])
             rightmax[r_index] = max(rightmax[r_index + 1], heights[r_index])
-    
+
     for index in range(len(heights)):
         water_height = min(leftmax[index], rightmax[index])
         if water_height > 0:
             total_volume += water_height - heights[index]
-    
+
+    print("##v_trajectory captured: {}##".format(total_volume))
     return total_volume

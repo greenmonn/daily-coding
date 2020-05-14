@@ -7,6 +7,6 @@
 ## Run
 
 ```
-source venv/bin/activate
-python orbs.py --target 
+pip install .
+
 ```
